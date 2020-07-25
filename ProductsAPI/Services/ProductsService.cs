@@ -27,15 +27,31 @@ namespace ProductsAPI.Services
             return productItem;
         }
 
-        public string DeleteItem(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-
         public Product UpdateProduct(string id, Product productItem)
         {
-            throw new NotImplementedException();
+            for(var index = _productItems.Count - 1; index >= 0; index--)
+            {
+                if(_productItems[index].ID == id)
+                {
+                    _productItems[index] = productItem;
+                }
+            }
+
+            return productItem;
         }
+
+        public string DeleteItem(string id)
+        {
+            for(var index = _productItems.Count - 1; index >=0; index--)
+            {
+                if(_productItems[index].ID == id)
+                {
+                    _productItems.RemoveAt(index);
+                }
+            }
+
+            return id;
+        }
+
     }
 }
